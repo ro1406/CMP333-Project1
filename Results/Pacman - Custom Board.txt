@@ -1,0 +1,37 @@
+Algorithm used: breadthFirstSearch
+Final state: (6, 9)
+
+Solution: [(0, 0), (0, 1), (1, 1), (2, 1), (2, 2), (2, 3), (3, 3), (4, 3), (4, 4), (4, 5), (4, 6), (4, 7), (4, 8), (5, 8), (6, 8), (6, 9)]
+Cost: 16
+Number of nodes expanded: 145830
+Number of nodes generated: 361141
+Total Time Taken: 1.4562 seconds
+================================================================================
+
+Algorithm used: iterativeDeepeningSearch
+Final state: (6, 9)
+Solution: [(0, 0), (0, 1), (1, 1), (2, 1), (2, 2), (2, 3), (3, 3), (4, 3), (4, 4), (4, 5), (4, 6), (4, 7), (4, 8), (5, 8), (6, 8), (6, 9)]
+Cost: 16
+Number of nodes expanded: 249699
+Number of nodes generated: 249685
+Total Time Taken: 0.4206 seconds
+================================================================================
+
+Algorithm used: uniformCostSearch
+Final state: (6, 9)
+Solution: [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (1, 5), (2, 5), (2, 6), (2, 7), (3, 7), (4, 7), (4, 8), (5, 8), (5, 9), (6, 9)]
+Cost: 16
+Number of nodes expanded: 197609
+Number of nodes generated: 497291
+Total Time Taken: 3.5185 seconds
+================================================================================
+
+Algorithm used: astarSearch
+Heuristic used: straightLineDistance
+Final state: (6, 9)
+Solution: [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (1, 5), (2, 5), (2, 6), (2, 7), (3, 7), (4, 7), (4, 8), (5, 8), (5, 9), (6, 9)]
+Cost: 16
+Number of nodes expanded: 181
+Number of nodes generated: 411
+Total Time Taken: 0.0030 seconds
+================================================================================

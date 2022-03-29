@@ -1,0 +1,52 @@
+DFS: Not Possible (Infinite Search Tree)
+
+Greedy (Manhattan): My poor laptop (4.6Ghz with 16gb ram) cant handle it </3
+
+Greedy (Hamming): My poor laptop (4.6Ghz with 16gb ram) cant handle it </3
+
+Algorithm used: breadthFirstSearch
+Final state: [1, 2, 3, 4, 5, 6, 7, 8, 0]
+Solution: ['U', 'R', 'D', 'L', 'D', 'R', 'U', 'L', 'U', 'R', 'D', 'D']
+Cost: 12
+Number of nodes expanded: 288645
+Number of nodes generated: 819651
+Total Time Taken: 1.6388 seconds
+================================================================================
+
+Algorithm used: iterativeDeepeningSearch
+Final state: [1, 2, 3, 4, 5, 6, 7, 8, 0]
+Solution: ['U', 'R', 'D', 'L', 'D', 'R', 'U', 'L', 'U', 'R', 'D', 'D']
+Cost: 12
+Number of nodes expanded: 446963
+Number of nodes generated: 446952
+Total Time Taken: 0.7711 seconds
+================================================================================
+
+Algorithm used: uniformCostSearch
+Final state: [1, 2, 3, 4, 5, 6, 7, 8, 0]
+Solution: ['U', 'R', 'D', 'L', 'D', 'R', 'U', 'L', 'U', 'R', 'D', 'D']
+Cost: 12
+Number of nodes expanded: 275108
+Number of nodes generated: 737463
+Total Time Taken: 2.9916 seconds
+================================================================================
+
+Algorithm used: astarSearch
+Heuristic used: manhattanDistance
+Final state: [1, 2, 3, 4, 5, 6, 7, 8, 0]
+Solution: ['U', 'R', 'D', 'L', 'D', 'R', 'U', 'L', 'U', 'R', 'D', 'D']
+Cost: 12
+Number of nodes expanded: 68
+Number of nodes generated: 183
+Total Time Taken: 0.0020 seconds
+================================================================================
+
+Algorithm used: astarSearch
+Heuristic used: hammingDistance
+Final state: [1, 2, 3, 4, 5, 6, 7, 8, 0]
+Solution: ['U', 'R', 'D', 'L', 'D', 'R', 'U', 'L', 'U', 'R', 'D', 'D']
+Cost: 12
+Number of nodes expanded: 2101
+Number of nodes generated: 5969
+Total Time Taken: 0.0329 seconds
+================================================================================

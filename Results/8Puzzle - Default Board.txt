@@ -1,0 +1,52 @@
+DFS: Not Possible (Infinite Search Tree)
+
+Greedy (Manhattan): My poor laptop (4.6Ghz with 16gb ram) cant handle it </3
+
+Greedy (Hamming): My poor laptop (4.6Ghz with 16gb ram) cant handle it </3
+
+Algorithm used: breadthFirstSearch
+Final state: [1, 2, 3, 4, 5, 6, 7, 8, 0]
+Solution: ['D', 'L', 'U', 'L', 'D', 'D', 'R', 'U', 'L', 'U', 'R', 'R', 'D', 'D']
+Cost: 14
+Number of nodes expanded: 1271285
+Number of nodes generated: 3589819
+Total Time Taken: 11.88 seconds
+================================================================================
+
+Algorithm used: iterativeDeepeningSearch
+Final state: [1, 2, 3, 4, 5, 6, 7, 8, 0]
+Solution: ['D', 'L', 'U', 'L', 'D', 'D', 'R', 'U', 'L', 'U', 'R', 'R', 'D', 'D']
+Cost: 14
+Number of nodes expanded: 1965733
+Number of nodes generated: 1965720
+Total Time Taken: 3.31 seconds
+================================================================================
+
+Algorithm used: uniformCostSearch
+Final state: [1, 2, 3, 4, 5, 6, 7, 8, 0]
+Solution: ['D', 'L', 'U', 'L', 'D', 'D', 'R', 'U', 'L', 'U', 'R', 'R', 'D', 'D']
+Cost: 14
+Number of nodes expanded: 1163507
+Number of nodes generated: 3131259
+Total Time Taken: 21.15 seconds
+================================================================================
+
+Algorithm used: astarSearch
+Heuristic used: manhattanDistance
+Final state: [1, 2, 3, 4, 5, 6, 7, 8, 0]
+Solution: ['D', 'L', 'U', 'L', 'D', 'D', 'R', 'U', 'L', 'U', 'R', 'R', 'D', 'D']
+Cost: 14
+Number of nodes expanded: 906
+Number of nodes generated: 2439
+Total Time Taken: 0.02 seconds
+================================================================================
+
+Algorithm used: astarSearch
+Heuristic used: hammingDistance
+Final state: [1, 2, 3, 4, 5, 6, 7, 8, 0]
+Solution: ['D', 'L', 'U', 'L', 'D', 'D', 'R', 'U', 'L', 'U', 'R', 'R', 'D', 'D']
+Cost: 14
+Number of nodes expanded: 5640
+Number of nodes generated: 16626
+Total Time Taken: 0.10 seconds
+================================================================================

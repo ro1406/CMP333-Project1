@@ -13,6 +13,7 @@ from AI_search import generalSearch, breadthFirstSearch, depthFirstSearch, \
     Stack, Queue, PriorityQueue
 from EightPuzzleProblem import EightPuzzleProblem
 from PacmanProblem import PacmanProblem
+from FarmerPuzzleProblem import FarmerPuzzleProblem
 
 def solve(problem, search_algorithms):
 
@@ -78,6 +79,10 @@ pacmap2=[ "P--------%",
           "%----%%%--",
           "%----%---."]
 
-solve(PacmanProblem(pacmap2, (0,0), (6,9)),[breadthFirstSearch, iterativeDeepeningSearch,uniformCostSearch, astarSearch])
+#solve(PacmanProblem(pacmap2, (0,0), (6,9)),[breadthFirstSearch, iterativeDeepeningSearch,uniformCostSearch, astarSearch])
+
+
+solve(FarmerPuzzleProblem(),[astarSearch])
+
 
 ###

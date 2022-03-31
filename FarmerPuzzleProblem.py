@@ -50,8 +50,8 @@ class FarmerPuzzleProblem (SearchProblem):
         return moves
 
     def getHeuristics(self):
-        def hammingDist(state): #Number of ones in the grid
-            return sum(state[0])
+        def hammingDist(state): #Number of zeros in the vector
+            return 4-sum(state[0])
         return [hammingDist]
 
 ###

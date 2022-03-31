@@ -61,6 +61,7 @@ puzzle = [1,8,0,
 puzzle2=[1,6,5,
          4,0,2,
          7,3,8]
+
 #solve(EightPuzzleProblem(puzzle2), [breadthFirstSearch, iterativeDeepeningSearch,uniformCostSearch, astarSearch])
 #solve(EightPuzzleProblem(puzzle2),[astarSearch])
 
@@ -84,5 +85,3 @@ pacmap2=[ "P--------%",
 
 solve(FarmerPuzzleProblem(),[breadthFirstSearch,iterativeDeepeningSearch,uniformCostSearch,greedySearch,astarSearch])
 
-
-###

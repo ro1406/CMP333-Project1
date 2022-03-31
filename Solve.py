@@ -33,7 +33,7 @@ def solve(problem, search_algorithms):
         print(f"Cost: {cost}")
         print(f"Number of nodes expanded: {num_nodes_exp}")
         print(f"Number of nodes generated: {num_nodes_gen}")
-        print("Total Time Taken: %0.4f seconds"%timetaken)
+        print("Total Time Taken: %0.12f seconds"%timetaken)
         print("="*80+"\n")
         
 
@@ -82,7 +82,7 @@ pacmap2=[ "P--------%",
 #solve(PacmanProblem(pacmap2, (0,0), (6,9)),[breadthFirstSearch, iterativeDeepeningSearch,uniformCostSearch, astarSearch])
 
 
-solve(FarmerPuzzleProblem(),[astarSearch])
+solve(FarmerPuzzleProblem(),[breadthFirstSearch,iterativeDeepeningSearch,uniformCostSearch,greedySearch,astarSearch])
 
 
 ###

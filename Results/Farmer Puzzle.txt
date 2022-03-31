@@ -1,0 +1,46 @@
+Algorithm used: breadthFirstSearch
+Final state: [True, True, True, True]
+Solution: [[False, False, False, False], 'FS->', 'F<-', 'FW->', 'FS<-', 'FC->', 'F<-', 'FS->']
+Cost: 8
+Number of nodes expanded: 97
+Number of nodes generated: 210
+Total Time Taken: 0.000389337540 seconds
+================================================================================
+
+Algorithm used: iterativeDeepeningSearch
+Final state: [True, True, True, True]
+Solution: [[False, False, False, False], 'FS->', 'F<-', 'FW->', 'FS<-', 'FC->', 'F<-', 'FS->']
+Cost: 8
+Number of nodes expanded: 186
+Number of nodes generated: 180
+Total Time Taken: 0.000000000000 seconds
+================================================================================
+
+Algorithm used: uniformCostSearch
+Final state: [True, True, True, True]
+Solution: [[False, False, False, False], 'FS->', 'F<-', 'FC->', 'FS<-', 'FW->', 'F<-', 'FS->']
+Cost: 8
+Number of nodes expanded: 157
+Number of nodes generated: 342
+Total Time Taken: 0.000988245010 seconds
+================================================================================
+
+Algorithm used: greedySearch
+Heuristic used: hammingDist
+Final state: [True, True, True, True]
+Solution: [[False, False, False, False], 'FS->', 'F<-', 'FC->', 'FS<-', 'FW->', 'F<-', 'FS->']
+Cost: 8
+Number of nodes expanded: 11
+Number of nodes generated: 22
+Total Time Taken: 0.000000000000 seconds
+================================================================================
+
+Algorithm used: astarSearch
+Heuristic used: hammingDist
+Final state: [True, True, True, True]
+Solution: [[False, False, False, False], 'FS->', 'F<-', 'FC->', 'FS<-', 'FW->', 'F<-', 'FS->']
+Cost: 8
+Number of nodes expanded: 36
+Number of nodes generated: 74
+Total Time Taken: 0.000000000000 seconds
+================================================================================

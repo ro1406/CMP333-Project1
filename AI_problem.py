@@ -7,7 +7,7 @@
 ###   Michel Pasquier 2019, adapted from the code @
 ###   https://kartikkukreja.wordpress.com/2015/06/14/heuristics-in-ai-search/
 ###
-
+#Made a change
 
 from abc import ABC, abstractmethod
 

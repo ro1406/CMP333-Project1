@@ -62,7 +62,7 @@ puzzle2=[1,6,5,
          4,0,2,
          7,3,8]
 
-#solve(EightPuzzleProblem(puzzle2), [breadthFirstSearch, iterativeDeepeningSearch,uniformCostSearch, astarSearch])
+#solve(EightPuzzleProblem(puzzle), [breadthFirstSearch, iterativeDeepeningSearch,uniformCostSearch, astarSearch])
 #solve(EightPuzzleProblem(puzzle2),[astarSearch])
 
 pacmap = ["P---------",
@@ -83,5 +83,5 @@ pacmap2=[ "P--------%",
 #solve(PacmanProblem(pacmap2, (0,0), (6,9)),[breadthFirstSearch, iterativeDeepeningSearch,uniformCostSearch, astarSearch])
 
 
-solve(FarmerPuzzleProblem(),[breadthFirstSearch,iterativeDeepeningSearch,uniformCostSearch,greedySearch,astarSearch])
+#solve(FarmerPuzzleProblem(),[breadthFirstSearch,iterativeDeepeningSearch,uniformCostSearch,greedySearch,astarSearch])
 

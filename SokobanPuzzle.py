@@ -17,10 +17,10 @@ GOAL STATE: No . left on the board (We will overwrite a dot if we push the box o
 
 ACTIONS:
 PRECOND:
-    1) MoveRight -> No wall on right, no box with another box on the right, no box then wall
-    2) MoveLeft -> No wall on left, no box with another box on the left, no box then wall
-    3) MoveDown -> No wall on down, no box with another box on the down, no box then wall
-    4) MoveUp -> No wall on up, no box with another box on the up, no box then wall
+    1) MoveRight -> No wall on right, box must have empty cell on its right
+    2) MoveLeft -> No wall on left, box must have empty cell on its left
+    3) MoveDown -> No wall on down, box must have empty cell below
+    4) MoveUp -> No wall on up, box must have empty cell above
     
 POSTCOND:
     1) MoveRight -> Player moves right, and takes box with him if there is one
@@ -43,40 +43,95 @@ class SokobanPuzzle (SearchProblem):
         self.board=list(board)
 
     # a state is a tuple (vector, [states so far])
-    def getStartState(self): return (self.board, [self.board])
+    def getStartState(self): 
+        playerpos=[-1,-1]
+        for i in range(len(self.grid)):
+            for j in range(len(self.grid[i])):
+                if self.grid[i][j]=='@':
+                    playerpos=[i,j]      #[x,y]
+                
+        return (self.board, playerpos,[])
 
-############################### ONLY DONE TILL HERE #####################################
-
-    # the goal state is defined as [True,True,True,True]
+    # the goal state is defined if there are no '.' on the board:
     def isGoalState(self, state):
-        vec, path = state
-        return sum(vec)==4
+        grid, player, path = state
+        isGoal=True
+        for line in grid:
+            if '.' in line:
+                isGoal=False
+                break
+        return isGoal
 
     def getSuccessors(self, state):
         moves = []
-        vec, path = state
+        grid, player, path = state
         
-        def generateMove(idxs, action): #List of all indices to flip, Human interpretable action
+        #Make respective post conditions:
+        def generateMove(player, action, pushBox=False):
             pathCopy = list(path)
             pathCopy.append(action) # For printing purposes
-            vecCopy = list(vec)
-            for i in idxs:
-                vecCopy[i]= not vecCopy[i]
-            moves.append((vecCopy,pathCopy))
+            gridCopy = list(grid)
+            #Make change to gridCopy:
+            if action=='R':
+                if pushBox:
+                    gridCopy[player[0]+2][player[1]]='$' #Move box right
+                gridCopy[player[0]+1][player[1]]='@' #Move player right
+            elif action=='L':
+                if pushBox:
+                    gridCopy[player[0]-2][player[1]]='$' #Move box left
+                gridCopy[player[0]-1][player[1]]='@' #Move player left
+            elif action=='U':
+                if pushBox:
+                    gridCopy[player[0]][player[1]+2]='$' #Move box up
+                gridCopy[player[0]][player[1]+1]='@' #Move player up
+            elif action=='D':
+                if pushBox:
+                    gridCopy[player[0]][player[1]-2]='$' #Move box down
+                gridCopy[player[0]][player[1]-1]='@' #Move player down
+            
+            gridCopy[player[0]][player[1]]=' ' #Old player location is empty now
+            moves.append((gridCopy,pathCopy))
 
-
-        if vec[2]!=vec[1] and vec[2]!=vec[3]: #Sheep not on the same side as wolf or cabbage
-            generateMove([0],"F<-" if vec[0] else "F->") #Farmer only
-        if vec[0]==vec[2]: #Farmer and sheep same side
-            generateMove([0,2],"FS<-" if vec[0] and vec[2] else "FS->") #Farmer+Sheep
-        if vec[0]==vec[1] and vec[2]!=vec[3]:#Farmer wolf same side, but sheep and cabbage diff side
-            generateMove([0,1],"FW<-" if vec[0] and vec[1] else "FW->") #Farmer+Wolf
-        if vec[0]==vec[3] and vec[2]!=vec[1]:#Farmer and cabbage same side, but sheep and wolf diff side
-            generateMove([0,3],"FC<-" if vec[0] and vec[3] else "FC->") #Farmer+Cabbage
+        #Preconditions:
+        #MoveRight
+        if player[0]<len(grid)-1: #IF there is space on the right:
+            if (grid[player[0]+1,player[1]]==" "):#IF empty space on right:
+                generateMove(player,'R')
+            elif (grid[player[0]+1][player[1]]=="$"): #IF theres a box on the right:
+                if (player[0]+1<len(grid)-1) and grid[player[0]+2][player[1]]==' ': #IF there is space after the box, and its empty:
+                    generateMove(player,'R',True)
+                    
+        #MoveLeft
+        if player[0]>0: #IF there is space on the left:
+            if (grid[player[0]-1,player[1]]==" "):#IF empty space on left:
+                generateMove(player,'L')
+            elif (grid[player[0]-1][player[1]]=="$"): #IF theres a box on the left:
+                if (player[0]>1) and grid[player[0]-2][player[1]]==' ': #IF there is space after the box, and its empty:
+                    generateMove(player,'L',True)
+        
+        #MoveDown
+        if player[1]<len(grid)-1: #IF there is space below:
+            if (grid[player[0],player[1]+1]==" "):#IF empty space below:
+                generateMove(player,'D')
+            elif (grid[player[0]][player[1]+1]=="$"): #IF theres a box below:
+                if (player[1]+1<len(grid)-1) and grid[player[0]][player[1]+2]==' ': #IF there is space after the box, and its empty:
+                    generateMove(player,'D',True)
+        
+        #MoveUp
+        if player[1]>0: #IF there is space above:
+            if (grid[player[0],player[1]-1]==" "):#IF empty space above:
+                generateMove(player,'U')
+            elif (grid[player[0]][player[1]-1]=="$"): #IF theres a box below:
+                if (player[1]>1) and grid[player[0]][player[1]-2]==' ': #IF there is space after the box, and its empty:
+                    generateMove(player,'U',True)
         
         return moves
 
+############################### ONLY DONE TILL HERE #####################################
+
+#IDEAS FOR HEURISTICS: 1) Manhattans of each stone with each goal 2) Euclideans of each stone with each goal
+
     def getHeuristics(self):
-        def hammingDist(state): #Number of zeros in the vector
+        def manhattanDist(state): 
             return 4-sum(state[0])
-        return [hammingDist]
+        return [manhattanDist]

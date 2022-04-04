@@ -58,7 +58,7 @@ def generalSearch(problem, strategy):
         node = strategy.pop()
         
         #> uncomment below to print the node being expanded
-        print(node)
+        #print(node)
         if problem.isGoalState(node):
             return (node, num_nodes_exp, num_nodes_gen)
 

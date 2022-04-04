@@ -34,6 +34,7 @@ COST: Uniform? Heuristics: Manhattan and Euclidean
 
 from AI_problem import SearchProblem
 from AI_heuristics import AI_heuristics
+from copy import deepcopy
 
 def getSokobanBoard(filename):
     with open(filename,'r') as f:
@@ -72,10 +73,11 @@ class SokobanPuzzle (SearchProblem):
         
         #Make respective post conditions:
         def generateMove(player, action, pushBox=False):
-            pathCopy = path.copy()
+            mapping={'U':'D','D':'U','L':'R','R':'L'}
+            pathCopy = deepcopy(path)
             pathCopy.append(action) # For printing purposes
-            gridCopy = grid.copy()
-            playerCopy=player.copy()
+            gridCopy = deepcopy(grid)
+            playerCopy=deepcopy(player)
             #Make change to gridCopy:
             if action=='R':
                 if pushBox:
@@ -103,17 +105,20 @@ class SokobanPuzzle (SearchProblem):
             
             gridCopy[player[0]][player[1]]=' ' #Old player location is empty now
             
-            #Full Pruning:
-            found=True
-            for tup in path:
-                g=tup[0]
-                for i in range(len(g)):
-                    for j in range(len(g[i])):
-                        if g[i][j]!=gridCopy[i][j]:
-                            found=False
-                            break
-            if not found:
+            if pathCopy[-1]!=mapping[action]:
                 moves.append((gridCopy,playerCopy,pathCopy))
+            # #Full Pruning:
+            # found=True
+            # for tup in path:
+            #     g=tup[0]
+            #     for i in range(len(g)):
+            #         for j in range(len(g[i])):
+            #             if g[i][j]!=gridCopy[i][j]:
+            #                 found=False
+            #                 break
+            # if not found:
+                
+            
 
         #Preconditions:
         #MoveRight

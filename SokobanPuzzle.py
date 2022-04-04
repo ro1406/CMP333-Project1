@@ -105,20 +105,21 @@ class SokobanPuzzle (SearchProblem):
             
             gridCopy[player[0]][player[1]]=' ' #Old player location is empty now
             
-            if pathCopy[-1]!=mapping[action]:
+            if pathCopy[-1]!=mapping[action]: #Dont go back pruning
                 moves.append((gridCopy,playerCopy,pathCopy))
-            # #Full Pruning:
-            # found=True
-            # for tup in path:
-            #     g=tup[0]
-            #     for i in range(len(g)):
-            #         for j in range(len(g[i])):
-            #             if g[i][j]!=gridCopy[i][j]:
-            #                 found=False
-            #                 break
-            # if not found:
+                # #Full Pruning:
+                # found=True
+                # for tup in path:
+                #     g=tup[0]
+                #     for i in range(len(g)):
+                #         for j in range(len(g[i])):
+                #             if g[i][j]!=gridCopy[i][j]:
+                #                 found=False
+                #                 break
+                # if not found:
+                #     moves.append((gridCopy,playerCopy,pathCopy))
                 
-            
+
 
         #Preconditions:
         #MoveDown
@@ -189,6 +190,8 @@ class SokobanPuzzle (SearchProblem):
             for goal in goals:
                 for box in boxes:
                     total+=((box[0]-goal[0])**2+(box[1]-goal[1])**2)**0.5
+            for box in boxes:
+                total+=((box[0]-player[0])**2+(box[1]-player[1])**2)**0.5
             return total
             
         

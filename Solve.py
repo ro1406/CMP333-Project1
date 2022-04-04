@@ -15,6 +15,7 @@ from EightPuzzleProblem import EightPuzzleProblem
 from PacmanProblem import PacmanProblem
 from FarmerPuzzleProblem import FarmerPuzzleProblem
 from SokobanPuzzle import SokobanPuzzle, getSokobanBoard
+from StonePuzzleProblem import StonePuzzleProblem
 
 def solve(problem, search_algorithms):
 
@@ -23,7 +24,7 @@ def solve(problem, search_algorithms):
             print("No solution!")
             return
         state, num_nodes_exp, num_nodes_gen = solution
-        if isinstance(problem, EightPuzzleProblem):
+        if isinstance(problem, EightPuzzleProblem) or isinstance(problem,StonePuzzleProblem):
             finalstate,_,steps = state
             cost = len(steps)
         else:
@@ -86,10 +87,8 @@ pacmap2=[ "P--------%",
 
 #solve(FarmerPuzzleProblem(),[breadthFirstSearch,iterativeDeepeningSearch,uniformCostSearch,greedySearch,astarSearch])
 
-<<<<<<< Updated upstream
-board=getSokobanBoard("./Sokoban_boards/02_easy.txt")
+#board=getSokobanBoard("./Sokoban_boards/02_easy.txt")
 
-solve(SokobanPuzzle(board),[astarSearch])
-=======
+#solve(SokobanPuzzle(board),[astarSearch])
 
->>>>>>> Stashed changes
+solve(StonePuzzleProblem(),[breadthFirstSearch,depthFirstSearch,iterativeDeepeningSearch,uniformCostSearch,greedySearch,astarSearch])

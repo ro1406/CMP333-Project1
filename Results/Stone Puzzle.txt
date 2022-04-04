@@ -1,0 +1,55 @@
+Algorithm used: breadthFirstSearch
+Final state: ['x', 'x', '_', 'o', 'o']
+Solution: ['R', 'JL', 'L', 'JR', 'JR', 'L', 'JL', 'R']
+Cost: 8
+Number of nodes expanded: 30
+Number of nodes generated: 31
+Total Time Taken: 0.000000000000 seconds
+================================================================================
+
+Algorithm used: depthFirstSearch
+Final state: ['x', 'x', '_', 'o', 'o']
+Solution: ['L', 'JR', 'R', 'JL', 'JL', 'R', 'JR', 'L']
+Cost: 8
+Number of nodes expanded: 14
+Number of nodes generated: 17
+Total Time Taken: 0.000000000000 seconds
+================================================================================
+
+Algorithm used: iterativeDeepeningSearch
+Final state: ['x', 'x', '_', 'o', 'o']
+Solution: ['R', 'JL', 'L', 'JR', 'JR', 'L', 'JL', 'R']
+Cost: 8
+Number of nodes expanded: 135
+Number of nodes generated: 128
+Total Time Taken: 0.000506401062 seconds
+================================================================================
+
+Algorithm used: uniformCostSearch
+Final state: ['x', 'x', '_', 'o', 'o']
+Solution: ['L', 'JR', 'R', 'JL', 'JL', 'R', 'JR', 'L']
+Cost: 8
+Number of nodes expanded: 30
+Number of nodes generated: 31
+Total Time Taken: 0.000000000000 seconds
+================================================================================
+
+Algorithm used: greedySearch
+Heuristic used: hammingDistance
+Final state: ['x', 'x', '_', 'o', 'o']
+Solution: ['L', 'JR', 'R', 'JL', 'JL', 'R', 'JR', 'L']
+Cost: 8
+Number of nodes expanded: 15
+Number of nodes generated: 17
+Total Time Taken: 0.000000000000 seconds
+================================================================================
+
+Algorithm used: astarSearch
+Heuristic used: hammingDistance
+Final state: ['x', 'x', '_', 'o', 'o']
+Solution: ['R', 'JL', 'L', 'JR', 'JR', 'L', 'JL', 'R']
+Cost: 8
+Number of nodes expanded: 29
+Number of nodes generated: 30
+Total Time Taken: 0.000995159149 seconds
+================================================================================

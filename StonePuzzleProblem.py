@@ -27,15 +27,14 @@ class StonePuzzleProblem(SearchProblem):
             movesList.append((tilesList, emptyCell+i, pathList))
         
         l = len(tiles)
-        if emptyCell < l-1 and tiles[emptyCell+1] == 'x':
+        if emptyCell < l-1 and tiles[emptyCell+1] == 'x': # _x -> x_
             generateMove(1, 'R')
-        if emptyCell > 0 and tiles[emptyCell-1] == 'o':
+        if emptyCell > 0 and tiles[emptyCell-1] == 'o': #o_ -> _o 
             generateMove(-1, 'L')
-        if emptyCell < l-2 and tiles[emptyCell+2] == 'x' and tiles[emptyCell+1] == 'o':
-            generateMove(2, 'JR')
-        if emptyCell > 1 and tiles[emptyCell-2] == 'o' and tiles[emptyCell-1] == 'x':
+        if emptyCell < l-2 and tiles[emptyCell+2] == 'x' and tiles[emptyCell+1] == 'o': #_ox -> xo_
+            generateMove(2, 'JR') #_ox -> xo_
+        if emptyCell > 1 and tiles[emptyCell-2] == 'o' and tiles[emptyCell-1] == 'x': #ox_ -> _xo
             generateMove(-2, 'JL')
-
         
         return movesList
 

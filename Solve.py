@@ -14,6 +14,7 @@ from AI_search import generalSearch, breadthFirstSearch, depthFirstSearch, \
 from EightPuzzleProblem import EightPuzzleProblem
 from PacmanProblem import PacmanProblem
 from FarmerPuzzleProblem import FarmerPuzzleProblem
+from SokobanPuzzle import SokobanPuzzle, getSokobanBoard
 
 def solve(problem, search_algorithms):
 
@@ -85,3 +86,6 @@ pacmap2=[ "P--------%",
 
 #solve(FarmerPuzzleProblem(),[breadthFirstSearch,iterativeDeepeningSearch,uniformCostSearch,greedySearch,astarSearch])
 
+board=getSokobanBoard("./Sokoban_boards/02_easy.txt")
+
+solve(SokobanPuzzle(board),[astarSearch])

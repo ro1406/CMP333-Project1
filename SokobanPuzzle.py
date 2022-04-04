@@ -37,17 +37,23 @@ COST: Uniform? Heuristics: Manhattan and Euclidean
 from AI_problem import SearchProblem
 from AI_heuristics import AI_heuristics
 
+def getSokobanBoard(filename):
+    with open(filename,'r') as f:
+        return [line.strip() for line in f.readlines()]
+
 class SokobanPuzzle (SearchProblem):
     
     def __init__(self,board):
-        self.board=list(board)
+        self.board=[[char for char in board[i]] for i in range(len(board))]
+        for x in self.board:
+            print(x)
 
     # a state is a tuple (vector, [states so far])
     def getStartState(self): 
         playerpos=[-1,-1]
-        for i in range(len(self.grid)):
-            for j in range(len(self.grid[i])):
-                if self.grid[i][j]=='@':
+        for i in range(len(self.board)):
+            for j in range(len(self.board[i])):
+                if self.board[i][j]=='@':
                     playerpos=[i,j]      #[x,y]
                 
         return (self.board, playerpos,[])
@@ -71,31 +77,39 @@ class SokobanPuzzle (SearchProblem):
             pathCopy = list(path)
             pathCopy.append(action) # For printing purposes
             gridCopy = list(grid)
+            playerCopy=list(player)
             #Make change to gridCopy:
             if action=='R':
                 if pushBox:
                     gridCopy[player[0]+2][player[1]]='$' #Move box right
                 gridCopy[player[0]+1][player[1]]='@' #Move player right
+                playerCopy[0],playerCopy[1]=player[0]+1,player[1]
+                
             elif action=='L':
                 if pushBox:
                     gridCopy[player[0]-2][player[1]]='$' #Move box left
                 gridCopy[player[0]-1][player[1]]='@' #Move player left
+                playerCopy[0],playerCopy[1]=player[0]-1,player[1]
+                
             elif action=='U':
                 if pushBox:
-                    gridCopy[player[0]][player[1]+2]='$' #Move box up
-                gridCopy[player[0]][player[1]+1]='@' #Move player up
+                    gridCopy[player[0]][player[1]-2]='$' #Move box up
+                gridCopy[player[0]][player[1]-1]='@' #Move player up
+                playerCopy[0],playerCopy[1]=player[0],player[1]-1
+                
             elif action=='D':
                 if pushBox:
-                    gridCopy[player[0]][player[1]-2]='$' #Move box down
-                gridCopy[player[0]][player[1]-1]='@' #Move player down
+                    gridCopy[player[0]][player[1]+2]='$' #Move box down
+                gridCopy[player[0]][player[1]+1]='@' #Move player down
+                playerCopy[0],playerCopy[1]=player[0],player[1]+1                
             
             gridCopy[player[0]][player[1]]=' ' #Old player location is empty now
-            moves.append((gridCopy,pathCopy))
+            moves.append((gridCopy,playerCopy,pathCopy))
 
         #Preconditions:
         #MoveRight
         if player[0]<len(grid)-1: #IF there is space on the right:
-            if (grid[player[0]+1,player[1]]==" "):#IF empty space on right:
+            if (grid[player[0]+1][player[1]]==" "):#IF empty space on right:
                 generateMove(player,'R')
             elif (grid[player[0]+1][player[1]]=="$"): #IF theres a box on the right:
                 if (player[0]+1<len(grid)-1) and grid[player[0]+2][player[1]]==' ': #IF there is space after the box, and its empty:
@@ -103,7 +117,7 @@ class SokobanPuzzle (SearchProblem):
                     
         #MoveLeft
         if player[0]>0: #IF there is space on the left:
-            if (grid[player[0]-1,player[1]]==" "):#IF empty space on left:
+            if (grid[player[0]-1][player[1]]==" "):#IF empty space on left:
                 generateMove(player,'L')
             elif (grid[player[0]-1][player[1]]=="$"): #IF theres a box on the left:
                 if (player[0]>1) and grid[player[0]-2][player[1]]==' ': #IF there is space after the box, and its empty:
@@ -111,7 +125,7 @@ class SokobanPuzzle (SearchProblem):
         
         #MoveDown
         if player[1]<len(grid)-1: #IF there is space below:
-            if (grid[player[0],player[1]+1]==" "):#IF empty space below:
+            if (grid[player[0]][player[1]+1]==" "):#IF empty space below:
                 generateMove(player,'D')
             elif (grid[player[0]][player[1]+1]=="$"): #IF theres a box below:
                 if (player[1]+1<len(grid)-1) and grid[player[0]][player[1]+2]==' ': #IF there is space after the box, and its empty:
@@ -119,7 +133,7 @@ class SokobanPuzzle (SearchProblem):
         
         #MoveUp
         if player[1]>0: #IF there is space above:
-            if (grid[player[0],player[1]-1]==" "):#IF empty space above:
+            if (grid[player[0]][player[1]-1]==" "):#IF empty space above:
                 generateMove(player,'U')
             elif (grid[player[0]][player[1]-1]=="$"): #IF theres a box below:
                 if (player[1]>1) and grid[player[0]][player[1]-2]==' ': #IF there is space after the box, and its empty:
@@ -133,5 +147,37 @@ class SokobanPuzzle (SearchProblem):
 
     def getHeuristics(self):
         def manhattanDist(state): 
-            return 4-sum(state[0])
-        return [manhattanDist]
+            board,player,_=state
+            goals=[]
+            boxes=[]
+            for i in range(len(board)):
+                if '.' in board[i]:
+                    goals.append([i,board[i].index('.')])
+                if '$' in board[i]:
+                    boxes.append([i,board[i].index('$')])
+            total=0.
+            for goal in goals:
+                for box in boxes:
+                    total+=abs(box[0]-goal[0])+abs(box[1]-goal[1])
+                    
+            for box in boxes:
+                total+=abs(box[0]-player[0])+abs(box[1]-player[1])
+            return total
+        
+        def euclideanDist(state):
+            board,player,_ =state
+            goals=[]
+            boxes=[]
+            for i in range(len(board)):
+                if '.' in board[i]:
+                    goals.append([i,board[i].index('.')])
+                if '$' in board[i]:
+                    boxes.append([i,board[i].index('$')])
+            total=0.
+            for goal in goals:
+                for box in boxes:
+                    total+=((box[0]-goal[0])**2+(box[1]-goal[1])**2)**0.5
+            return total
+            
+        
+        return [manhattanDist,euclideanDist]

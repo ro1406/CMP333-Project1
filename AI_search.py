@@ -56,9 +56,9 @@ def generalSearch(problem, strategy):
         #> uncomment below to print the priority queue at each iteration
         #print(strategy.heap)
         node = strategy.pop()
-
+        
         #> uncomment below to print the node being expanded
-        #print(node)
+        print(node)
         if problem.isGoalState(node):
             return (node, num_nodes_exp, num_nodes_gen)
 

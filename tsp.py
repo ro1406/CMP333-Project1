@@ -15,30 +15,29 @@ class TSPProblem (SearchProblem):
         self.currPos = posInitial
         self.citiesVisited = {posInitial}
         
-    def getStartState(self): return (self.grid,self.citiesVisited,self.currPos)
+    def getStartState(self): return (self.citiesVisited,self.currPos,[],[0])#State,position,path so far, cost so far
 
     def isGoalState(self, state):
         return len(state[0]) == len(self.grid)
     
     def getSuccessors(self, state):
-        progress = []
-        citiesVisited, posInitial, path, costs = state
+        moves = []
+        citiesVisited, position, path, costs = state
         
-        def madeProgress(count, moves):
-            nonlocal posInitial
-            pathTemp = list(path)
-            cVTemp = list(citiesVisited)
-            costsTemp = list(costs)
+        def generateMove(newpos, movemade): #new position, move in human readable format
+            pathCopy = list(path)
+            cVCopy = set(citiesVisited)
+            costsCopy = list(costs)
             
-            pathTemp.append(moves)
-            cVTemp.append(count)
-            costsTemp.append(self.grid[posInitial][costs])
-            progress.append(cVTemp, count, pathTemp, costsTemp)
+            pathCopy.append(movemade)
+            cVCopy.add(newpos)
+            costsCopy.append(self.grid[position][newpos])
+            moves.append((cVCopy, newpos, pathCopy, costsCopy))
             
         for i in range(len(self.grid)):
             if i not in citiesVisited:
-                madeProgress(i, f'{posInitial}->{i}')
-                return moves
+                generateMove(i, str(position)+"->"+str(i))
+        return moves
             
     def getHeuristics(self):
         def closestNeighbour(grid):

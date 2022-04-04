@@ -16,6 +16,7 @@ from PacmanProblem import PacmanProblem
 from FarmerPuzzleProblem import FarmerPuzzleProblem
 from SokobanPuzzle import SokobanPuzzle, getSokobanBoard
 from StonePuzzleProblem import StonePuzzleProblem
+from tsp import TSPProblem
 
 def solve(problem, search_algorithms):
 
@@ -27,6 +28,9 @@ def solve(problem, search_algorithms):
         if isinstance(problem, EightPuzzleProblem) or isinstance(problem,StonePuzzleProblem):
             finalstate,_,steps = state
             cost = len(steps)
+        elif isinstance(problem,TSPProblem):
+            finalstate,_,steps,costs = state
+            cost = sum(costs)
         else:
             finalstate, steps = state
             cost = len(steps)
@@ -83,12 +87,18 @@ pacmap2=[ "P--------%",
           "%----%---."]
 
 #solve(PacmanProblem(pacmap2, (0,0), (6,9)),[breadthFirstSearch, iterativeDeepeningSearch,uniformCostSearch, astarSearch])
-
-
 #solve(FarmerPuzzleProblem(),[breadthFirstSearch,iterativeDeepeningSearch,uniformCostSearch,greedySearch,astarSearch])
+#solve(StonePuzzleProblem(),[breadthFirstSearch,depthFirstSearch,iterativeDeepeningSearch,uniformCostSearch,greedySearch,astarSearch])
+
+grid=[[0,20,42,35],
+      [20,0,30,34],
+      [42,30,0,12],
+      [35,34,12,0] ]
+
+solve(TSPProblem(grid,1),[astarSearch])
+
 
 #board=getSokobanBoard("./Sokoban_boards/02_easy.txt")
 
 #solve(SokobanPuzzle(board),[astarSearch])
 
-solve(StonePuzzleProblem(),[breadthFirstSearch,depthFirstSearch,iterativeDeepeningSearch,uniformCostSearch,greedySearch,astarSearch])

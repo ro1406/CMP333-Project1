@@ -86,6 +86,10 @@ pacmap2=[ "P--------%",
 
 #solve(FarmerPuzzleProblem(),[breadthFirstSearch,iterativeDeepeningSearch,uniformCostSearch,greedySearch,astarSearch])
 
+<<<<<<< Updated upstream
 board=getSokobanBoard("./Sokoban_boards/02_easy.txt")
 
 solve(SokobanPuzzle(board),[astarSearch])
+=======
+
+>>>>>>> Stashed changes

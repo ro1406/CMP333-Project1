@@ -51,13 +51,14 @@ def generalSearch(problem, strategy):
     # added counters to keep track of the number of nodes expanded/generated
     num_nodes_exp = 0
     num_nodes_gen = 1
-    visited=[]#########################
+    visited={}#########################
     while not strategy.empty():
         num_nodes_exp += 1
         #> uncomment below to print the priority queue at each iteration
         #print(strategy.heap)
         node = strategy.pop()
-        visited.append(node) ###############
+        stringtohash=''.join([''.join(x) for x in node[0]])
+        visited[stringtohash]=True ###############
         #> uncomment below to print the node being expanded
         #print(node)
         if problem.isGoalState(node):
@@ -65,7 +66,8 @@ def generalSearch(problem, strategy):
 
         for move in problem.getSuccessors(node):
             #Full pruning:####################
-            if move in visited:#####################
+            movetohash=''.join([''.join(x) for x in move[0]])
+            if movetohash in visited.keys():#####################
                 continue
             strategy.push(move)
             num_nodes_gen += 1

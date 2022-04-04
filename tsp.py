@@ -12,11 +12,10 @@ class TSPProblem (SearchProblem):
 
     def __init__(self, grid, posInitial=0):
         self.grid = grid
-        self.posInitial = posInitial
-        self.citiesVisited = [posInitial]
+        self.currPos = posInitial
+        self.citiesVisited = {posInitial}
         
-
-    def getStartState(self): return (self.citiesVisited,self.posInitial,[],[0])
+    def getStartState(self): return (self.grid,self.citiesVisited,self.currPos)
 
     def isGoalState(self, state):
         return len(state[0]) == len(self.grid)

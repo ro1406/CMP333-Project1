@@ -25,7 +25,7 @@ def solve(problem, search_algorithms):
             print("No solution!")
             return
         state, num_nodes_exp, num_nodes_gen = solution
-        if isinstance(problem, EightPuzzleProblem) or isinstance(problem,StonePuzzleProblem):
+        if isinstance(problem, EightPuzzleProblem) or isinstance(problem,StonePuzzleProblem) or isinstance(problem,SokobanPuzzle):
             finalstate,_,steps = state
             cost = len(steps)
         elif isinstance(problem,TSPProblem):

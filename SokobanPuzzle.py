@@ -79,25 +79,25 @@ class SokobanPuzzle (SearchProblem):
             gridCopy = deepcopy(grid)
             playerCopy=deepcopy(player)
             #Make change to gridCopy:
-            if action=='R':
+            if action=='D':
                 if pushBox:
                     gridCopy[player[0]+2][player[1]]='$' #Move box right
                 gridCopy[player[0]+1][player[1]]='@' #Move player right
                 playerCopy[0],playerCopy[1]=player[0]+1,player[1]
                 
-            elif action=='L':
+            elif action=='U':
                 if pushBox:
                     gridCopy[player[0]-2][player[1]]='$' #Move box left
                 gridCopy[player[0]-1][player[1]]='@' #Move player left
                 playerCopy[0],playerCopy[1]=player[0]-1,player[1]
                 
-            elif action=='U':
+            elif action=='L':
                 if pushBox:
                     gridCopy[player[0]][player[1]-2]='$' #Move box up
                 gridCopy[player[0]][player[1]-1]='@' #Move player up
                 playerCopy[0],playerCopy[1]=player[0],player[1]-1
                 
-            elif action=='D':
+            elif action=='R':
                 if pushBox:
                     gridCopy[player[0]][player[1]+2]='$' #Move box down
                 gridCopy[player[0]][player[1]+1]='@' #Move player down
@@ -121,37 +121,37 @@ class SokobanPuzzle (SearchProblem):
             
 
         #Preconditions:
-        #MoveRight
-        if player[0]<len(grid)-1: #IF there is space on the right:
-            if (grid[player[0]+1][player[1]]==" "):#IF empty space on right:
-                generateMove(player,'R')
-            elif (grid[player[0]+1][player[1]]=="$"): #IF theres a box on the right:
-                if (player[0]+1<len(grid)-1) and grid[player[0]+2][player[1]]==' ': #IF there is space after the box, and its empty:
-                    generateMove(player,'R',True)
-                    
-        #MoveLeft
-        if player[0]>0: #IF there is space on the left:
-            if (grid[player[0]-1][player[1]]==" "):#IF empty space on left:
-                generateMove(player,'L')
-            elif (grid[player[0]-1][player[1]]=="$"): #IF theres a box on the left:
-                if (player[0]>1) and grid[player[0]-2][player[1]]==' ': #IF there is space after the box, and its empty:
-                    generateMove(player,'L',True)
-        
         #MoveDown
-        if player[1]<len(grid)-1: #IF there is space below:
-            if (grid[player[0]][player[1]+1]==" "):#IF empty space below:
+        if player[0]<len(grid)-1: #IF there is space below:
+            if (grid[player[0]+1][player[1]]==" "):#IF empty space below:
                 generateMove(player,'D')
-            elif (grid[player[0]][player[1]+1]=="$"): #IF theres a box below:
-                if (player[1]+1<len(grid)-1) and grid[player[0]][player[1]+2]==' ': #IF there is space after the box, and its empty:
+            elif (grid[player[0]+1][player[1]]=="$"): #IF theres a box below:
+                if (player[0]+1<len(grid)-1) and (grid[player[0]+2][player[1]]==' ' or grid[player[0]+2][player[1]]=='.'): #IF there is space after the box, and its empty:
                     generateMove(player,'D',True)
-        
+                    
         #MoveUp
-        if player[1]>0: #IF there is space above:
-            if (grid[player[0]][player[1]-1]==" "):#IF empty space above:
+        if player[0]>0: #IF there is space above:
+            if (grid[player[0]-1][player[1]]==" "):#IF empty space above:
                 generateMove(player,'U')
-            elif (grid[player[0]][player[1]-1]=="$"): #IF theres a box below:
-                if (player[1]>1) and grid[player[0]][player[1]-2]==' ': #IF there is space after the box, and its empty:
+            elif (grid[player[0]-1][player[1]]=="$"): #IF theres a box above:
+                if (player[0]>1) and (grid[player[0]-2][player[1]]==' ' or grid[player[0]-2][player[1]]=='.'): #IF there is space after the box, and its empty:
                     generateMove(player,'U',True)
+        
+        #MoveRight
+        if player[1]<len(grid)-1: #IF there is space on right:
+            if (grid[player[0]][player[1]+1]==" "):#IF empty space on right:
+                generateMove(player,'R')
+            elif (grid[player[0]][player[1]+1]=="$"): #IF theres a box on right:
+                if (player[1]+1<len(grid)-1) and (grid[player[0]][player[1]+2]==' ' or grid[player[0]][player[1]+2]=='.'): #IF there is space after the box, and its empty:
+                    generateMove(player,'R',True)
+        
+        #MoveLeft
+        if player[1]>0: #IF there is space on left:
+            if (grid[player[0]][player[1]-1]==" "):#IF empty space on left:
+                generateMove(player,'L')
+            elif (grid[player[0]][player[1]-1]=="$"): #IF theres a box on left:
+                if (player[1]>1) and (grid[player[0]][player[1]-2]==' ' or grid[player[0]][player[1]-2]=='.'): #IF there is space after the box, and its empty:
+                    generateMove(player,'L',True)
         
         return moves
 

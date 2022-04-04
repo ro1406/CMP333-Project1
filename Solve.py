@@ -95,10 +95,10 @@ grid=[[0,20,42,35],
       [42,30,0,12],
       [35,34,12,0] ]
 
-solve(TSPProblem(grid,1),[astarSearch])
+#solve(TSPProblem(grid),[breadthFirstSearch,depthFirstSearch,iterativeDeepeningSearch,uniformCostSearch,greedySearch,astarSearch])
 
 
-#board=getSokobanBoard("./Sokoban_boards/02_easy.txt")
+board=getSokobanBoard("./Sokoban_boards/02_easy.txt")
 
-#solve(SokobanPuzzle(board),[astarSearch])
+solve(SokobanPuzzle(board),[astarSearch])
 

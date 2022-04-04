@@ -4,15 +4,14 @@ Created on Fri Apr  1 02:59:51 2022
 
 @author: rohan
 """
-######################################### TBD ##############################################
 
 
 '''
 FORMULATION:
 
-STATE: Array of strings representing board state
+STATE: 2D array of characters representing board state
 INITAL STATE: Supplied as param
-GOAL STATE: No . left on the board (We will overwrite a dot if we push the box onto it)
+GOAL STATE: No '.' left on the board (We will overwrite a dot if we push the box onto it)
     
 
 ACTIONS:
@@ -32,7 +31,6 @@ POSTCOND:
 COST: Uniform? Heuristics: Manhattan and Euclidean
 
 '''
-
 
 from AI_problem import SearchProblem
 from AI_heuristics import AI_heuristics
@@ -74,10 +72,10 @@ class SokobanPuzzle (SearchProblem):
         
         #Make respective post conditions:
         def generateMove(player, action, pushBox=False):
-            pathCopy = list(path)
+            pathCopy = path.copy()
             pathCopy.append(action) # For printing purposes
-            gridCopy = list(grid)
-            playerCopy=list(player)
+            gridCopy = grid.copy()
+            playerCopy=player.copy()
             #Make change to gridCopy:
             if action=='R':
                 if pushBox:
@@ -104,7 +102,18 @@ class SokobanPuzzle (SearchProblem):
                 playerCopy[0],playerCopy[1]=player[0],player[1]+1                
             
             gridCopy[player[0]][player[1]]=' ' #Old player location is empty now
-            moves.append((gridCopy,playerCopy,pathCopy))
+            
+            #Full Pruning:
+            found=True
+            for tup in path:
+                g=tup[0]
+                for i in range(len(g)):
+                    for j in range(len(g[i])):
+                        if g[i][j]!=gridCopy[i][j]:
+                            found=False
+                            break
+            if not found:
+                moves.append((gridCopy,playerCopy,pathCopy))
 
         #Preconditions:
         #MoveRight
@@ -140,8 +149,6 @@ class SokobanPuzzle (SearchProblem):
                     generateMove(player,'U',True)
         
         return moves
-
-############################### ONLY DONE TILL HERE #####################################
 
 #IDEAS FOR HEURISTICS: 1) Manhattans of each stone with each goal 2) Euclideans of each stone with each goal
 

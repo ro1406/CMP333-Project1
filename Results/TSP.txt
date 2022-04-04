@@ -1,0 +1,55 @@
+Algorithm used: breadthFirstSearch
+Final state: {0, 1, 2, 3}
+Solution: ['0->1', '1->2', '2->3']
+Cost: 62
+Number of nodes expanded: 11
+Number of nodes generated: 16
+Total Time Taken: 0.000000000000 seconds
+================================================================================
+
+Algorithm used: depthFirstSearch
+Final state: {0, 1, 2, 3}
+Solution: ['0->3', '3->2', '2->1']
+Cost: 77
+Number of nodes expanded: 4
+Number of nodes generated: 7
+Total Time Taken: 0.000000000000 seconds
+================================================================================
+
+Algorithm used: iterativeDeepeningSearch
+Final state: {0, 1, 2, 3}
+Solution: ['0->1', '1->2', '2->3']
+Cost: 62
+Number of nodes expanded: 18
+Number of nodes generated: 16
+Total Time Taken: 0.000000000000 seconds
+================================================================================
+
+Algorithm used: uniformCostSearch
+Final state: {0, 1, 2, 3}
+Solution: ['0->1', '1->2', '2->3']
+Cost: 62
+Number of nodes expanded: 9
+Number of nodes generated: 14
+Total Time Taken: 0.000000000000 seconds
+================================================================================
+
+Algorithm used: greedySearch
+Heuristic used: closestNeighbour
+Final state: {0, 1, 2, 3}
+Solution: ['0->1', '1->2', '2->3']
+Cost: 62
+Number of nodes expanded: 4
+Number of nodes generated: 7
+Total Time Taken: 0.000000000000 seconds
+================================================================================
+
+Algorithm used: astarSearch
+Heuristic used: closestNeighbour
+Final state: {0, 1, 2, 3}
+Solution: ['0->1', '1->2', '2->3']
+Cost: 62
+Number of nodes expanded: 6
+Number of nodes generated: 10
+Total Time Taken: 0.000000000000 seconds
+================================================================================

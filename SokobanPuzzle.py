@@ -107,19 +107,6 @@ class SokobanPuzzle (SearchProblem):
             
             if pathCopy[-1]!=mapping[action]: #Dont go back pruning
                 moves.append((gridCopy,playerCopy,pathCopy))
-                # #Full Pruning:
-                # found=True
-                # for tup in path:
-                #     g=tup[0]
-                #     for i in range(len(g)):
-                #         for j in range(len(g[i])):
-                #             if g[i][j]!=gridCopy[i][j]:
-                #                 found=False
-                #                 break
-                # if not found:
-                #     moves.append((gridCopy,playerCopy,pathCopy))
-                
-
 
         #Preconditions:
         #MoveDown
@@ -157,6 +144,7 @@ class SokobanPuzzle (SearchProblem):
         return moves
 
 #IDEAS FOR HEURISTICS: 1) Manhattans of each stone with each goal 2) Euclideans of each stone with each goal
+#                     Both Heuristics also add the distance between each box and the player (Avoids the player unecessarily going away from any of the boxes)
 
     def getHeuristics(self):
         def manhattanDist(state): 

@@ -97,7 +97,7 @@ grid=[[0,20,42,35],
 
 #solve(TSPProblem(grid),[breadthFirstSearch,depthFirstSearch,iterativeDeepeningSearch,uniformCostSearch,greedySearch,astarSearch])
 
-board=getSokobanBoard("./Sokoban_boards/05_moderate.txt")
+board=getSokobanBoard("./Sokoban_boards/04_moderate.txt")
 
-solve(SokobanPuzzle(board),[astarSearch])
+solve(SokobanPuzzle(board),[astarSearch,greedySearch,uniformCostSearch,iterativeDeepeningSearch])
 

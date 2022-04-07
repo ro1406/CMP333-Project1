@@ -51,28 +51,26 @@ def generalSearch(problem, strategy,isSokoban):
     # added counters to keep track of the number of nodes expanded/generated
     num_nodes_exp = 0
     num_nodes_gen = 1
-    if isSokoban:
+    if isSokoban: #Apply Full Pruning
         visited={}
     while not strategy.empty():
         num_nodes_exp += 1
         #> uncomment below to print the priority queue at each iteration
         #print(strategy.heap)
         node = strategy.pop()
-        if isSokoban:
+        if isSokoban:#Apply Full Pruning
             stringtohash=''.join([''.join(x) for x in node[0]])
             visited[stringtohash]=True
         #> uncomment below to print the node being expanded
         #print(node)
-        if num_nodes_exp%1000==0:
-             print(num_nodes_exp)
         if problem.isGoalState(node):
             return (node, num_nodes_exp, num_nodes_gen)
 
         for move in problem.getSuccessors(node):
-            #Full pruning:####################
+            #Full pruning:
             if isSokoban:
                 movetohash=''.join([''.join(x) for x in move[0]])
-                if movetohash in visited.keys():#####################
+                if movetohash in visited.keys():
                     continue
             strategy.push(move)
             num_nodes_gen += 1
@@ -111,8 +109,6 @@ def iterativeDeepeningSearch(problem,isSokoban):
     while True:
         if isSokoban:
             visited={}
-        # if depth%50==0:
-        #     print(f"Checking depth:{depth}")
         solution = depthLimitedDFS(problem, problem.getStartState(), depth,isSokoban)
         if solution is not None:
             return (solution, num_nodes_exp, num_nodes_gen)

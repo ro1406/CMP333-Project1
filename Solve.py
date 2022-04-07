@@ -100,9 +100,6 @@ grid=[[0,20,42,35],
 #solve(TSPProblem(grid),[breadthFirstSearch,depthFirstSearch,iterativeDeepeningSearch,uniformCostSearch,greedySearch,astarSearch])
 
 
-board="./Sokoban_boards/10_hard.txt"
-#solve(SokobanPuzzle(board),[breadthFirstSearch,depthFirstSearch,iterativeDeepeningSearch,uniformCostSearch,greedySearch,astarSearch])
-solve(SokobanPuzzle(board),[astarSearch])
-
-#8:42
-#8:58 -> Not done yet
+board="./Sokoban_boards/01_easy.txt"
+solve(SokobanPuzzle(board),[iterativeDeepeningSearch,uniformCostSearch,greedySearch,astarSearch])
+#solve(SokobanPuzzle(board),[depthFirstSearch])

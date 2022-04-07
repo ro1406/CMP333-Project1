@@ -1,0 +1,75 @@
+Algorithm used: breadthFirstSearch
+Final state: [['#', '#', '#', '#'], ['#', ' ', ' ', '#', '#', '#', '#'], ['#', ' ', '$', ' ', '$', ' ', '#'], ['#', ' ', '@', ' ', '#', ' ', '#'], ['#', '#', ' ', ' ', ' ', ' ', '#'], [' ', '#', '#', '#', '#', '#', '#']]
+Solution: ['D', 'L', 'L', 'U', 'D', 'L', 'U', 'L', 'U', 'U', 'R', 'D', 'R', 'D', 'D', 'L', 'U']
+Cost: 17
+Number of nodes expanded: 775
+Number of nodes generated: 898
+Total Time Taken: 0.088764429092 seconds
+================================================================================
+
+Algorithm used: depthFirstSearch
+Final state: [['#', '#', '#', '#'], ['#', ' ', ' ', '#', '#', '#', '#'], ['#', ' ', '$', ' ', '$', ' ', '#'], ['#', ' ', '@', ' ', '#', ' ', '#'], ['#', '#', ' ', ' ', ' ', ' ', '#'], [' ', '#', '#', '#', '#', '#', '#']]
+Solution: ['D', 'L', 'L', 'L', 'U', 'L', 'U', 'R', 'L', 'D', 'R', 'D', 'R', 'R', 'R', 'U', 'U', 'L', 'L', 'R', 'R', 'D', 'D', 'L', 'L', 'U', 'L', 'L', 'U', 'U', 'R', 'D', 'R', 'D', 'D', 'L', 'U']
+Cost: 37
+Number of nodes expanded: 1010
+Number of nodes generated: 1023
+Total Time Taken: 0.164557695389 seconds
+================================================================================
+
+Algorithm used: iterativeDeepeningSearch
+Final state: [['#', '#', '#', '#'], ['#', ' ', ' ', '#', '#', '#', '#'], ['#', ' ', '$', ' ', '$', ' ', '#'], ['#', ' ', '@', ' ', '#', ' ', '#'], ['#', '#', ' ', ' ', ' ', ' ', '#'], [' ', '#', '#', '#', '#', '#', '#']]
+Solution: ['D', 'L', 'L', 'U', 'D', 'L', 'U', 'L', 'U', 'U', 'R', 'D', 'R', 'D', 'D', 'L', 'U']
+Cost: 17
+Number of nodes expanded: 1986
+Number of nodes generated: 1970
+Total Time Taken: 0.210469245911 seconds
+================================================================================
+
+Algorithm used: uniformCostSearch
+Final state: [['#', '#', '#', '#'], ['#', ' ', ' ', '#', '#', '#', '#'], ['#', ' ', '$', ' ', '$', ' ', '#'], ['#', ' ', '@', ' ', '#', ' ', '#'], ['#', '#', ' ', ' ', ' ', ' ', '#'], [' ', '#', '#', '#', '#', '#', '#']]
+Solution: ['D', 'L', 'L', 'U', 'D', 'L', 'U', 'L', 'U', 'U', 'R', 'D', 'R', 'D', 'D', 'L', 'U']
+Cost: 17
+Number of nodes expanded: 787
+Number of nodes generated: 913
+Total Time Taken: 0.094267368317 seconds
+================================================================================
+
+Algorithm used: greedySearch
+Heuristic used: manhattanDist
+Final state: [['#', '#', '#', '#'], ['#', ' ', ' ', '#', '#', '#', '#'], ['#', ' ', '$', ' ', '$', ' ', '#'], ['#', ' ', '@', ' ', '#', ' ', '#'], ['#', '#', ' ', ' ', ' ', ' ', '#'], [' ', '#', '#', '#', '#', '#', '#']]
+Solution: ['D', 'L', 'L', 'U', 'D', 'L', 'U', 'L', 'U', 'U', 'R', 'D', 'R', 'D', 'D', 'L', 'U']
+Cost: 17
+Number of nodes expanded: 62
+Number of nodes generated: 97
+Total Time Taken: 0.015957355499 seconds
+================================================================================
+
+Algorithm used: greedySearch
+Heuristic used: euclideanDist
+Final state: [['#', '#', '#', '#'], ['#', ' ', ' ', '#', '#', '#', '#'], ['#', ' ', '$', ' ', '$', ' ', '#'], ['#', ' ', '@', ' ', '#', ' ', '#'], ['#', '#', ' ', ' ', ' ', ' ', '#'], [' ', '#', '#', '#', '#', '#', '#']]
+Solution: ['D', 'L', 'L', 'L', 'U', 'D', 'R', 'U', 'L', 'L', 'U', 'U', 'R', 'D', 'R', 'D', 'D', 'L', 'U']
+Cost: 19
+Number of nodes expanded: 70
+Number of nodes generated: 113
+Total Time Taken: 0.010936975479 seconds
+================================================================================
+
+Algorithm used: astarSearch
+Heuristic used: manhattanDist
+Final state: [['#', '#', '#', '#'], ['#', ' ', ' ', '#', '#', '#', '#'], ['#', ' ', '$', ' ', '$', ' ', '#'], ['#', ' ', '@', ' ', '#', ' ', '#'], ['#', '#', ' ', ' ', ' ', ' ', '#'], [' ', '#', '#', '#', '#', '#', '#']]
+Solution: ['D', 'L', 'L', 'U', 'D', 'L', 'U', 'L', 'U', 'U', 'R', 'D', 'R', 'D', 'D', 'L', 'U']
+Cost: 17
+Number of nodes expanded: 334
+Number of nodes generated: 434
+Total Time Taken: 0.044881105423 seconds
+================================================================================
+
+Algorithm used: astarSearch
+Heuristic used: euclideanDist
+Final state: [['#', '#', '#', '#'], ['#', ' ', ' ', '#', '#', '#', '#'], ['#', ' ', '$', ' ', '$', ' ', '#'], ['#', ' ', '@', ' ', '#', ' ', '#'], ['#', '#', ' ', ' ', ' ', ' ', '#'], [' ', '#', '#', '#', '#', '#', '#']]
+Solution: ['D', 'L', 'L', 'U', 'D', 'L', 'U', 'L', 'U', 'U', 'R', 'D', 'R', 'D', 'D', 'L', 'U']
+Cost: 17
+Number of nodes expanded: 390
+Number of nodes generated: 501
+Total Time Taken: 0.050864219666 seconds
+================================================================================

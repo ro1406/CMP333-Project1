@@ -53,7 +53,7 @@ class SokobanPuzzle (SearchProblem):
        
     def getSokobanBoard(self,filename):
         with open(filename,'r') as f:
-            return [line[:-1] for line in f.readlines()]
+            return [line[:-1] if line[-1]=='\n' else line for line in f.readlines() ]
 
     # a state is a tuple (vector, [states so far])
     def getStartState(self): 

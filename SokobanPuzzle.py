@@ -35,16 +35,25 @@ from AI_problem import SearchProblem
 from AI_heuristics import AI_heuristics
 from copy import deepcopy
 
-def getSokobanBoard(filename):
-    with open(filename,'r') as f:
-        return [line.strip() for line in f.readlines()]
+
 
 class SokobanPuzzle (SearchProblem):
     
-    def __init__(self,board):
+    def __init__(self,filename):
+        board=self.getSokobanBoard(filename)
         self.board=[[char for char in board[i]] for i in range(len(board))]
         for x in self.board:
             print(x)
+        self.goals=[]
+        for i in range(len(self.board)):
+            for j in range(len(self.board[i])):
+                if self.board[i][j]=='.':
+                    self.goals.append((i,j))
+                    self.board[i][j]=" " #Change to space to allow the player to move to that location
+       
+    def getSokobanBoard(self,filename):
+        with open(filename,'r') as f:
+            return [line[:-1] for line in f.readlines()]
 
     # a state is a tuple (vector, [states so far])
     def getStartState(self): 
@@ -60,10 +69,12 @@ class SokobanPuzzle (SearchProblem):
     def isGoalState(self, state):
         grid, player, path = state
         isGoal=True
-        for line in grid:
-            if '.' in line:
-                isGoal=False
-                break
+        for i in range(len(grid)):
+            for j in range(len(grid[i])):
+                if grid[i][j]=='$':
+                    if (i,j) not in self.goals:
+                        isGoal=False
+                        break
         return isGoal
 
     def getSuccessors(self, state):
@@ -148,15 +159,12 @@ class SokobanPuzzle (SearchProblem):
     def getHeuristics(self):
         def manhattanDist(state): 
             board,player,_=state
-            goals=[]
             boxes=[]
             for i in range(len(board)):
-                if '.' in board[i]:
-                    goals.append([i,board[i].index('.')])
                 if '$' in board[i]:
                     boxes.append([i,board[i].index('$')])
             total=0.
-            for goal in goals:
+            for goal in self.goals:
                 for box in boxes:
                     total+=abs(box[0]-goal[0])+abs(box[1]-goal[1])
                     
@@ -166,15 +174,12 @@ class SokobanPuzzle (SearchProblem):
         
         def euclideanDist(state):
             board,player,_ =state
-            goals=[]
             boxes=[]
             for i in range(len(board)):
-                if '.' in board[i]:
-                    goals.append([i,board[i].index('.')])
                 if '$' in board[i]:
                     boxes.append([i,board[i].index('$')])
             total=0.
-            for goal in goals:
+            for goal in self.goals:
                 for box in boxes:
                     total+=((box[0]-goal[0])**2+(box[1]-goal[1])**2)**0.5
             for box in boxes:

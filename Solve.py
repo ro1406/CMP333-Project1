@@ -60,6 +60,8 @@ def solve(problem, search_algorithms):
             solution = algo(problem)
             print_info(solution,time()-t0)
 
+#! Main section calling the solve function for different puzzles:
+    
 puzzle = [1,8,0,
           4,3,2,
           5,7,6]
@@ -97,7 +99,17 @@ grid=[[0,20,42,35],
 
 #solve(TSPProblem(grid),[breadthFirstSearch,depthFirstSearch,iterativeDeepeningSearch,uniformCostSearch,greedySearch,astarSearch])
 
+<<<<<<< Updated upstream
 board=getSokobanBoard("./Sokoban_boards/04_moderate.txt")
 
 solve(SokobanPuzzle(board),[astarSearch,greedySearch,uniformCostSearch,iterativeDeepeningSearch])
+=======
+
+board="./Sokoban_boards/07_moderate.txt"
+solve(SokobanPuzzle(board),[breadthFirstSearch,depthFirstSearch,iterativeDeepeningSearch,uniformCostSearch,greedySearch,astarSearch])
+#solve(SokobanPuzzle(board),[astarSearch,depthFirstSearch,breadthFirstSearch])
+
+#8:42
+#8:58 -> Not done yet
+>>>>>>> Stashed changes
 

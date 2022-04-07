@@ -11,8 +11,7 @@ FORMULATION:
 
 STATE: 2D array of characters representing board state
 INITAL STATE: Supplied as param
-GOAL STATE: No '.' left on the board (We will overwrite a dot if we push the box onto it)
-    
+GOAL STATE: Each $ assigned to exactly one .
 
 ACTIONS:
 PRECOND:
@@ -181,6 +180,5 @@ class SokobanPuzzle (SearchProblem):
             for box in boxes:
                 total+=((box[0]-player[0])**2+(box[1]-player[1])**2)**0.5
             return total
-            
         
         return [manhattanDist,euclideanDist]

@@ -82,20 +82,31 @@ def depthFirstSearch(problem): return generalSearch(problem, Stack())
 def iterativeDeepeningSearch(problem):
     num_nodes_exp = 0
     num_nodes_gen = 1
-    def depthLimitedDFS(problem, state, depth):
+    
+    def depthLimitedDFS(problem, state, depth,isSokoban):
         nonlocal num_nodes_gen, num_nodes_exp
+        if isSokoban:
+            stringtohash=''.join([''.join(x) for x in state[0]])
+            visited[stringtohash]=True 
         num_nodes_exp += 1
         if problem.isGoalState(state): return state
         if depth <= 0: return None
         for move in problem.getSuccessors(state):
+            if isSokoban:
+                movetohash=''.join([''.join(x) for x in move[0]])
+                if movetohash in visited.keys():
+                    continue
+                
             num_nodes_gen += 1
-            solution = depthLimitedDFS(problem, move, depth-1)
+            solution = depthLimitedDFS(problem, move, depth-1,isSokoban)
             if solution is not None: return solution
         return None
 
     depth = 1
     while True:
-        solution = depthLimitedDFS(problem, problem.getStartState(), depth)
+        if isSokoban:
+            visited={}
+        solution = depthLimitedDFS(problem, problem.getStartState(), depth,isSokoban)
         if solution is not None:
             return (solution, num_nodes_exp, num_nodes_gen)
         depth += 1

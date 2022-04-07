@@ -14,7 +14,7 @@ from AI_search import generalSearch, breadthFirstSearch, depthFirstSearch, \
 from EightPuzzleProblem import EightPuzzleProblem
 from PacmanProblem import PacmanProblem
 from FarmerPuzzleProblem import FarmerPuzzleProblem
-from SokobanPuzzle import SokobanPuzzle, getSokobanBoard
+from SokobanPuzzle import SokobanPuzzle#, getSokobanBoard
 from StonePuzzleProblem import StonePuzzleProblem
 from tsp import TSPProblem
 
@@ -44,6 +44,7 @@ def solve(problem, search_algorithms):
         
 
     print(problem.__class__.__name__)
+    isSokoban=isinstance(problem,SokobanPuzzle)
 
     for algo in search_algorithms:
         if algo.__name__ in ["greedySearch", "astarSearch"]: # heuristic search
@@ -52,12 +53,12 @@ def solve(problem, search_algorithms):
               print(f"Heuristic used: {heuristic.__name__}")
 #! Adding timer to time our algorithms        
               t0=time()
-              solution = algo(problem, heuristic)
+              solution = algo(problem, heuristic,isSokoban)
               print_info(solution,time()-t0)
         else:
             print(f"Algorithm used: {algo.__name__}")
             t0=time()
-            solution = algo(problem)
+            solution = algo(problem,isSokoban)
             print_info(solution,time()-t0)
 
 puzzle = [1,8,0,
@@ -97,7 +98,8 @@ grid=[[0,20,42,35],
 
 #solve(TSPProblem(grid),[breadthFirstSearch,depthFirstSearch,iterativeDeepeningSearch,uniformCostSearch,greedySearch,astarSearch])
 
-board=getSokobanBoard("./Sokoban_boards/04_moderate.txt")
-
-solve(SokobanPuzzle(board),[astarSearch,greedySearch,uniformCostSearch,iterativeDeepeningSearch])
+#board=getSokobanBoard("./Sokoban_boards/08_hard.txt")
+board="./Sokoban_boards/10_hard.txt"
+#solve(SokobanPuzzle(board),[astarSearch,greedySearch,uniformCostSearch,iterativeDeepeningSearch])
+solve(SokobanPuzzle(board),[astarSearch])
 

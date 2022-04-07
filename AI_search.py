@@ -46,40 +46,44 @@ class PriorityQueue:
     def empty(self): return not self.heap
 
 
-def generalSearch(problem, strategy):
+def generalSearch(problem, strategy,sokoban=False):
     strategy.push(problem.getStartState())
     # added counters to keep track of the number of nodes expanded/generated
     num_nodes_exp = 0
     num_nodes_gen = 1
-    visited={}#########################
+    if sokoban:
+        visited={} #Use of full pruning
     while not strategy.empty():
         num_nodes_exp += 1
         #> uncomment below to print the priority queue at each iteration
         #print(strategy.heap)
         node = strategy.pop()
-        stringtohash=''.join([''.join(x) for x in node[0]])
-        visited[stringtohash]=True ###############
+        
+        if sokoban:
+            stringtohash=''.join([''.join(x) for x in node[0]])
+            visited[stringtohash]=True 
         #> uncomment below to print the node being expanded
         #print(node)
         if problem.isGoalState(node):
             return (node, num_nodes_exp, num_nodes_gen)
 
         for move in problem.getSuccessors(node):
-            #Full pruning:####################
-            movetohash=''.join([''.join(x) for x in move[0]])
-            if movetohash in visited.keys():#####################
-                continue
+            #Full pruning:
+            if sokoban:
+                movetohash=''.join([''.join(x) for x in move[0]])
+                if movetohash in visited.keys():
+                    continue
             strategy.push(move)
             num_nodes_gen += 1
         #> uncomment to print num of nodes generated after each node expansion
         #print(num_nodes_gen)
     return None
 
-def breadthFirstSearch(problem): return generalSearch(problem, Queue())
+def breadthFirstSearch(problem,isSokoban): return generalSearch(problem, Queue(),isSokoban)
 
-def depthFirstSearch(problem): return generalSearch(problem, Stack())
+def depthFirstSearch(problem,isSokoban): return generalSearch(problem, Stack(),isSokoban)
 
-def iterativeDeepeningSearch(problem):
+def iterativeDeepeningSearch(problem,isSokoban):
     num_nodes_exp = 0
     num_nodes_gen = 1
     def depthLimitedDFS(problem, state, depth):
@@ -100,18 +104,18 @@ def iterativeDeepeningSearch(problem):
             return (solution, num_nodes_exp, num_nodes_gen)
         depth += 1
 
-def uniformCostSearch(problem):
-    return generalSearch(problem, PriorityQueue(lambda state: (sum(state[3]) if len(state) > 3 else len(state[-1]))))
+def uniformCostSearch(problem,isSokoban):
+    return generalSearch(problem, PriorityQueue(lambda state: (sum(state[3]) if len(state) > 3 else len(state[-1]))),isSokoban)
 
-def greedySearch(problem, heuristic):
-    return generalSearch(problem, PriorityQueue(heuristic))
+def greedySearch(problem, heuristic,isSokoban):
+    return generalSearch(problem, PriorityQueue(heuristic),isSokoban)
 
-def astarSearch(problem, heuristic):
+def astarSearch(problem, heuristic,isSokoban):
     # the given function uses the number of steps as g-cost (uniform cost)
     # the number of elements in a state changes for different problems, hence
     # the following checks
     totalCost = lambda state: (sum(state[3]) if len(state) > 3 else len(state[-1])) + heuristic(state)
-    return generalSearch(problem, PriorityQueue(totalCost))
+    return generalSearch(problem, PriorityQueue(totalCost),isSokoban)
 
 
 ###

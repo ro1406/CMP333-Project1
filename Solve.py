@@ -101,5 +101,5 @@ grid=[[0,20,42,35],
 
 
 board="./Sokoban_boards/01_easy.txt"
-solve(SokobanPuzzle(board),[iterativeDeepeningSearch,uniformCostSearch,greedySearch,astarSearch])
+solve(SokobanPuzzle(board),[breadthFirstSearch])
 #solve(SokobanPuzzle(board),[depthFirstSearch])

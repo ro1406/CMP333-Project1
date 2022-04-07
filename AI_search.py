@@ -62,7 +62,7 @@ def generalSearch(problem, strategy,isSokoban):
             stringtohash=''.join([''.join(x) for x in node[0]])
             visited[stringtohash]=True
         #> uncomment below to print the node being expanded
-        #print(node)
+        print(node)
         if problem.isGoalState(node):
             return (node, num_nodes_exp, num_nodes_gen)
 
